@@ -8,7 +8,11 @@
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
     "check:content": "node scripts/check-content.mjs",
+    "check:learning": "node scripts/check-learning.mjs",
     "check:algorithms": "node scripts/check-algorithms.mjs",
+    "check:extended": "node scripts/check-extended.mjs",
+    "check:engineering": "python3 examples/engineering_checks.py && java -Dfile.encoding=UTF-8 examples/ThreadPoolChecks.java",
+    "check:ui": "node scripts/check-ui.mjs",
     "check:dist": "node scripts/check-dist.mjs"
   },
   "devDependencies": {

@@ -1,0 +1,6 @@
+{"id":"demo-1","relevant":["A","C"],"retrieved":["B","C","D"],"abstained":false}
+{"id":"demo-2","relevant":["A"],"retrieved":["A","B"],"abstained":false}
+{"id":"demo-3","relevant":["X"],"retrieved":["A","B"],"abstained":false}
+{"id":"demo-4","relevant":["D","E"],"retrieved":["E","D"],"abstained":false}
+{"id":"demo-5","relevant":[],"retrieved":[],"abstained":true}
+{"id":"demo-6","relevant":[],"retrieved":["Z"],"abstained":false}

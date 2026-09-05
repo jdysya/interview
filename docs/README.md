@@ -4,31 +4,38 @@ title: 面试知识库
 
 # 面试知识库
 
-面向 **AI 应用、Agent 与 Java 后端开发**，把常见基础题、算法和场景设计整理成可复习、可追问、可查证的 Wiki。
+**从会背答案，到能解释机制、推导故障、写出实现。**
 
-**首版整理：2026-09-05 · 36 篇专题 · 9 道 Java 算法详解 · 6 道场景设计**
+面向 AI 应用、Agent 与 Java 后端开发，保留基础速查，也提供深入专题、可视化图示、算法代码和项目实验。
 
-## 从这里开始
+> 本轮扩充：30 道 Java 算法 · 36 道机制自测题 · 3 条项目深挖主线 · 9 种图示。题目、文章、实验分别计数，不虚构面试频率或上线成绩。
 
-| 今天要复习什么 | 入口 | 重点 |
+## 选择今天的学习入口
+
+| 方向 | 入口 | 你会练到什么 |
 | --- | --- | --- |
-| AI 应用开发 | [进入专题](./ai/README.md) | RAG、混合检索、结构化输出、评估、推理服务 |
-| Agent 开发 | [进入专题](./agent/README.md) | ReAct、Plan-Execute、MCP、Skill、上下文和可靠执行 |
-| Java 后端 | [进入专题](./backend/README.md) | 并发、Spring、MySQL、Redis、Kafka、一致性 |
-| 算法训练 | [进入专题](./algorithms/README.md) | 哈希、滑窗、链表、二分、树、图、DP、堆、LRU |
-| 场景设计 | [进入专题](./system-design/README.md) | 短链、群聊、库存、审批、RAG 平台、查询 Agent |
+| 🧠 AI 应用 | [进入知识专题](./ai/README.md) | 模型机制、RAG、评测和 Java 服务 |
+| 🛠 Agent | [进入知识专题](./agent/README.md) | 工具、Runtime、上下文和可靠恢复 |
+| ⚙️ Java 后端 | [进入知识专题](./backend/README.md) | 并发、事务、数据库、缓存与排障 |
+| 🧩 算法 | [30 道训练题](./algorithms/README.md) | 不变量、Java 实现、边界与随机对拍 |
+| 🏗 场景设计 | [6 道场景概览](./system-design/README.md) | 短链、群聊、库存、审批、知识库、数据库 Agent |
+| 🔬 项目实验 | [3 条项目主线](./projects/README.md) | 状态模型、故障矩阵与验证边界 |
+| 🎯 闭卷自测 | [打开练习面板](./practice/README.md) | 岗位筛选、自评分、本地进度备份 |
 
-## 推荐打开的四页
+## 把基础连接成项目
 
-- [题目索引](./guide/question-bank.md)：按专题定位问题、回答和追问。
-- [学习路线](./guide/README.md)：按目标岗位安排四周训练。
-- [回答方法](./guide/answer-method.md)：把术语转成可以展开的解释。
-- [近期核验与变化](./guide/updates.md)：关注 MCP、Agent 工程与版本差异。
+<KnowledgeDiagram name="database" />
 
-顶部搜索支持中文全文检索，可直接搜索“事务失效”“上下文压缩”“LRU”或“RAG”。
+从 [数据库查询 Agent](./projects/database-agent.md) 出发，连接 SQL、分片、权限、工具契约、上下文与评测。也可以从 [库存预占](./projects/inventory-reservation.md) 或 [审批一致性](./projects/approval-consistency.md) 深入事务、状态机和补偿。
 
-## 内容约定
+## 读图，也要能验证
 
-每篇专题给出机制、边界、追问和原始来源。算法附 Java 解法与复杂度；场景题区分设计假设和真实实现。来源日期不代表公司真题日期，所有页面的“优先级”是复习建议。
+[可视化地图](./guide/visual-map.md) 提供架构、时序和状态图，支持窄屏横向查看与文字说明。图中的关系都是教学模型，不暗示某个真实系统已经部署。
 
-[查看资料来源与收录规则](./guide/sources.md)
+[实验总览](./projects/experiments.md) 明确列出可运行测试、手动实验与未验证项。算法直接从文档提取执行，工程实验使用合成数据，不需要真实业务凭据。
+
+## 持续复习
+
+[学习路线](./guide/README.md) · [完整专题索引](./guide/question-bank.md) · [回答方法](./guide/answer-method.md) · [来源与收录规则](./guide/sources.md) · [更新记录](./guide/updates.md)
+
+顶部搜索支持中文全文检索。自测评分仅存当前浏览器，不上传，也不自动跨设备同步；导出 JSON 后可自行迁移。
