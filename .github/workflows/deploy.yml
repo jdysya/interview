@@ -36,6 +36,8 @@ jobs:
         run: npm run check:content
       - name: Check question anchors, diagrams and navigation
         run: npm run check:learning
+      - name: Verify source-grounded article examples
+        run: python3 scripts/check-source-examples.py
       - name: Compile and verify original Java solutions
         run: npm run check:algorithms
       - name: Verify added algorithms and ACM parser
