@@ -62,7 +62,8 @@ jobs:
         with:
           name: wiki-ui-evidence
           path: .test-artifacts/
-          if-no-files-found: ignore
+          include-hidden-files: true
+          if-no-files-found: warn
           retention-days: 7
       - uses: actions/upload-pages-artifact@v4
         if: github.event_name != 'pull_request'
