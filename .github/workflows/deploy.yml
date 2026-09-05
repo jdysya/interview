@@ -17,7 +17,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v6
         with:
@@ -34,14 +34,36 @@ jobs:
         run: npm ci --no-audit --no-fund
       - name: Check content and local links
         run: npm run check:content
-      - name: Compile and verify published Java solutions
+      - name: Check question anchors, diagrams and navigation
+        run: npm run check:learning
+      - name: Compile and verify original Java solutions
         run: npm run check:algorithms
+      - name: Verify added algorithms and ACM parser
+        run: npm run check:extended
+      - name: Run recovery, inventory, evaluation and thread pool experiments
+        run: npm run check:engineering
       - name: Build wiki
         run: npm run docs:build
         env:
           NODE_OPTIONS: --max-old-space-size=4096
       - name: Verify rendered pages and assets
         run: npm run check:dist
+      - name: Install isolated browser test tools
+        run: |
+          npm install --prefix "$RUNNER_TEMP/wiki-browser" --no-package-lock --no-save playwright@1.58.2
+          "$RUNNER_TEMP/wiki-browser/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Verify desktop and mobile interactions
+        run: npm run check:ui
+        env:
+          WIKI_PLAYWRIGHT_MODULE: ${{ runner.temp }}/wiki-browser/node_modules/playwright/index.mjs
+      - name: Save browser test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wiki-ui-evidence
+          path: .test-artifacts/
+          if-no-files-found: ignore
+          retention-days: 7
       - uses: actions/upload-pages-artifact@v4
         if: github.event_name != 'pull_request'
         with:

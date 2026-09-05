@@ -1,45 +1,44 @@
 # 面试知识库 · Interview Wiki
 
-面向 AI 应用开发、Agent 开发与 Java 后端开发的中文面试 Wiki。
+面向 AI 应用开发、Agent 开发与 Java 后端开发的中文 VuePress Theme Hope Wiki。
 
-- [站点地址](https://jdysya.github.io/interview/)（需要先在仓库启用 GitHub Pages）
-- [题目索引](docs/guide/question-bank.md)
-- [学习路线](docs/guide/README.md)
-- [资料来源](docs/guide/sources.md)
-- [更新记录](docs/guide/updates.md)
+[站点](https://jdysya.github.io/interview/) · [专题索引](docs/guide/question-bank.md) · [自测](docs/practice/README.md) · [可视化地图](docs/guide/visual-map.md) · [实验说明](docs/projects/experiments.md)
 
-首版：2026-09-05，36 篇专题，包含 9 道 Java 算法详解与 6 道场景设计。每篇提供机制、边界与参考资料。
+## 内容
 
-## 本地开发
+保留首版 36 篇专题，在此基础上增加机制详解、3 条项目主线和岗位模拟面试。算法从 9 道扩充至 30 道；另有 36 道带稳定 ID 的机制自测题、9 种 SVG 图示。文章、题目和实验分别计数。
 
-Node.js 24，Java 17+（校验算法示例）。
+自测支持岗位/关键词/未掌握筛选、0–4 分评分及 JSON 导入导出。数据只保存在浏览器 localStorage，无服务端账号和同步服务。图示提供文字说明与窄屏横向滚动。
+
+## 开发与验证
+
+Node.js 24、Java 21、Python 3。依赖由 package-lock.json 固定；Python 示例只用标准库。
 
 ```bash
 npm ci
 npm run docs:dev
 ```
 
-验证与构建：
-
 ```bash
 npm run check:content
+npm run check:learning
 npm run check:algorithms
+npm run check:extended
+npm run check:engineering
 npm run docs:build
 npm run check:dist
 ```
 
-构建产物位于 `docs/.vuepress/dist`，不提交到 main。Node/npm 依赖由 package-lock.json 固定。
+浏览器 UI 检查由 CI 安装隔离的固定版本 Playwright 后运行 `scripts/check-ui.mjs`，不修改站点依赖。具体覆盖与未验证项见实验说明；以对应提交的 Actions 结果为准，不把文档预期当作已运行证据。
 
-## GitHub Pages 首次配置
+## 发布
 
-进入 [Settings → Pages](https://github.com/jdysya/interview/settings/pages)，将 Build and deployment → Source 设为 **GitHub Actions**。
+`.github/workflows/deploy.yml` 校验 PR；main 推送和手动运行时构建并发布。GitHub Settings → Pages → Source 使用 GitHub Actions。PR 不部署生产站点。
 
-`.github/workflows/deploy.yml` 在 PR 时校验构建；main 推送和手动运行时校验、构建并发布。首次启用 Pages 后，若之前部署失败，可在 Actions 重跑失败任务。PR 不部署生产站点。
+站点 base 为 `/interview/`。更名或绑定域名时，检查 `docs/.vuepress/config.ts`、产物校验和 UI 测试的路径。构建产物位于 `docs/.vuepress/dist`，不提交到 main。
 
-站点路径固定为 `/interview/`。更换仓库名或绑定域名时，同步修改 `docs/.vuepress/config.ts` 中的 base 与 hostname，以及 `scripts/check-dist.mjs` 的检查基准。
+## 维护
 
-## 内容维护
+新增文章同步更新章节 README、专题索引、导航、来源目录和更新记录；自测题更新 `docs/.vuepress/data/questions.json` 并给目标章节稳定锚点。图示在 `diagrams.ts` 维护，必须有可理解的文字说明。
 
-日常修改 `docs` 中的 Markdown，新增页面同步更新导航与题目索引。版本敏感内容核对官方来源。详见 [维护约定](AGENTS.md) 与 [贡献说明](CONTRIBUTING.md)。
-
-本站不需要运行时模型 API 密钥、数据库或服务器。搜索索引在构建时生成，页面在浏览器端检索。
+参见 [AGENTS.md](AGENTS.md)、[CONTRIBUTING.md](CONTRIBUTING.md) 和 [内容模板](templates/topic.md)。不公开公司内部信息，不把教学设计写成真实上线成果，不虚构性能数据或面试来源。
