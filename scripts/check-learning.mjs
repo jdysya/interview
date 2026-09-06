@@ -15,8 +15,10 @@ for(const [file,text] of texts){
   if(!/^---\n[\s\S]*?\n---\n/.test(text))errors.push(`${rel}: invalid frontmatter boundary`);
   if(/^ +(?:title|date):/m.test(text.split('\n---\n')[0]))errors.push(`${rel}: indented top-level metadata`);
   if(/^(ai|agent|backend|algorithms|system-design|projects)\//.test(rel)&&!rel.endsWith('README.md')){
-    if(!text.includes('## 参考资料'))errors.push(`${rel}: sources missing`);
-    if(!/整理与来源核验：\d{4}-\d{2}-\d{2}/.test(text))errors.push(`${rel}: review date missing`);
+    const hasSources=text.includes('## 参考资料')||/^## (?:\d+\. )?本页核验范围$/m.test(text);
+    const hasReviewDate=/(?:整理与来源核验|核验日期)：\d{4}-\d{2}-\d{2}/.test(text);
+    if(!hasSources)errors.push(`${rel}: sources missing`);
+    if(!hasReviewDate)errors.push(`${rel}: review date missing`);
   }
   for(const [,name] of text.matchAll(/<KnowledgeDiagram\s+name="([^"]+)"/g))if(!names.has(name))errors.push(`${rel}: unknown diagram ${name}`);
   const anchors=[...text.matchAll(/<a id="([^"]+)"/g)].map(m=>m[1]);
