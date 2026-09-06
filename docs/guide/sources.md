@@ -12,6 +12,14 @@ title: 资料来源与核验方法
 
 这些资料不证明某题的实际出现频率。即使作者说明来自真实面试，也仅归属于作者的报告；不替它编造公司、年份或百分比。具体覆盖和当前缺口见 [审阅记录](./coverage-audit.md)。
 
+## 2026-09-06：AI Agent 开源教学项目导航
+
+[AI Agent 开源教学项目导航](../agent/learning-resources.md) 的目标是帮助选择可实践的公开学习材料，而不是用社区教程替代协议、论文或官方文档。本轮实际读取并比较了候选项目的 GitHub 仓库主页 / README，重点核对：是否存在明确章节或渐进式实验、是否提供真实代码或 Notebook、当前完成状态、技术覆盖和作者声明的适用范围。
+
+主线课程重点核对了 [AI Agent Book](https://github.com/bojieli/ai-agent-book)、[Hello-Agents](https://github.com/datawhalechina/hello-agents)、[Microsoft AI Agents for Beginners](https://github.com/microsoft/AI-Agents-for-Beginners)、[Hugging Face Agents Course](https://github.com/huggingface/agents-course)、[LangGraph 101](https://github.com/langchain-ai/langgraph-101)、[LLM Zoomcamp](https://github.com/DataTalksClub/llm-zoomcamp)；Harness 方向核对了 [learn-claude-code](https://github.com/shareAI-lab/learn-claude-code)、[Claude Code From Scratch](https://github.com/Windy3f3f3f3f/claude-code-from-scratch)、[Agent Zero to Hero](https://github.com/KeWang0622/agent-zero-to-hero) 等；专题方向核对了 [MCP for Beginners](https://github.com/microsoft/mcp-for-beginners)、[RAG Techniques](https://github.com/NirDiamant/RAG_Techniques)、[Agent Memory Techniques](https://github.com/NirDiamant/Agent_Memory_Techniques) 和多组生产化 / LLM systems 教学仓库。完整候选与限制说明保留在导航页，不在本页重复整个清单。
+
+本轮核验只支持“这个仓库当前公开了哪些课程结构、代码、实验和项目状态”。GitHub Star 不作为质量证明；README 中的 production-ready、best practice、真实面试、高频、性能等宣传性描述也不自动升级为本站事实。MCP、Tool Calling、LangGraph、模型 API 等技术语义需要写入正式专题时，仍回到相应官方规范、源码、论文或可复现实验重新核验。
+
 ## 本轮实际阅读的技术依据
 
 | 主题 | 原始资料 | 支持的内容 |

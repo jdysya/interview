@@ -18,8 +18,10 @@ for (const file of files) {
   if (!/^# /m.test(text)) errors.push(`${rel}: missing heading`);
   if ((text.match(/^```/gm) ?? []).length % 2) errors.push(`${rel}: unclosed code fence`);
   if (/^(ai|agent|backend|algorithms|system-design)\//.test(rel) && !rel.endsWith('README.md')) {
-    if (!text.includes('## 参考资料')) errors.push(`${rel}: missing sources`);
-    if (!/整理与来源核验：\d{4}-\d{2}-\d{2}/.test(text)) errors.push(`${rel}: missing review date`);
+    const hasSources = text.includes('## 参考资料') || /^## (?:\d+\. )?本页核验范围$/m.test(text);
+    const hasReviewDate = /(?:整理与来源核验|核验日期)：\d{4}-\d{2}-\d{2}/.test(text);
+    if (!hasSources) errors.push(`${rel}: missing sources`);
+    if (!hasReviewDate) errors.push(`${rel}: missing review date`);
   }
   const prose = text.replace(/^```[^\n]*\n[\s\S]*?^```\s*$/gm, '');
   for (const [,target] of prose.matchAll(/\[[^\]]*\]\(([^\s)]+)\)/g)) {
