@@ -8,6 +8,7 @@ title: Agent 开发
 
 | 层次 | 专题 | 目标 |
 | --- | --- | --- |
+| 学习导航 | [AI Agent 开源教学项目](./learning-resources.md) | 按教材、Harness、MCP、RAG、Memory 与生产化选择可运行学习项目 |
 | 架构 | [Agent 与 Workflow](./architecture.md) | 解释何时需要动态决策 |
 | Runtime | [执行与恢复实验](./runtime-lab.md)、[可靠性与安全](./reliability.md) | 持久意图、幂等、查证与预算 |
 | 工具 | [MCP 基础](./tools-mcp.md)、[契约与并发调度](./tool-contracts.md) | 区分协议、业务错误与权限 |
