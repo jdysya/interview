@@ -5,7 +5,7 @@ import { hopeTheme } from "vuepress-theme-hope";
 const sections = [
   { text: "🧭 学习与资料", prefix: "/guide/", children: ["", "question-bank", "answer-method", "coverage-audit", "visual-map", "sources", "updates"] },
   { text: "🧠 AI 应用开发", prefix: "/ai/", children: ["", "llm-basics", "transformer-inference", "rag", "retrieval", "rag-lab", "structured-output", "evaluation", "evaluation-lab", "serving", "java-service"] },
-  { text: "🛠 Agent 开发", prefix: "/agent/", children: ["", "architecture", "runtime-lab", "tools-mcp", "tool-contracts", "skills", "skill-context-lab", "context-memory", "reliability", "evaluation"] },
+  { text: "🛠 Agent 开发", prefix: "/agent/", children: ["", "learning-resources", "architecture", "runtime-lab", "tools-mcp", "tool-contracts", "skills", "skill-context-lab", "context-memory", "reliability", "evaluation"] },
   { text: "⚙️ 后端开发", prefix: "/backend/", children: ["", "java-foundations", "java-collections", "concurrency", "jmm-threadpool", "jvm", "spring", "spring-mybatis", "mysql", "mysql-mvcc", "mysql-locking", "mysql-logging", "redis", "consistency", "cache-outbox", "messaging", "network", "os-rpc"] },
   { text: "🧩 算法题", prefix: "/algorithms/", children: ["", "arrays", "sliding-window", "linked-list", "binary-search", "trees", "graphs", "dynamic-programming", "heap", "lru", "two-pointers", "prefix-stack", "tree-graph-extended", "backtracking", "dp-greedy", "acm-testing"] },
   { text: "🏗 场景设计", prefix: "/system-design/", children: ["", "short-url", "group-chat", "flash-sale", "approval", "rag-platform", "database-agent"] },
