@@ -1,61 +1,46 @@
 ---
-title: 资料来源与收录规则
+title: 资料来源与核验方法
 ---
 
-# 资料来源与收录规则
+# 资料来源与核验方法
 
-本站使用原创解释与代码，外部资料保留出处，不整篇搬运。每篇文章末尾列出与其结论直接相关的原始资料；本页作为分类入口，不替代逐篇引用。
+**先读资料，再写文章。** 题目覆盖与技术答案是两种不同证据：公开题库说明值得检查哪些问题，官方文档、源码、论文帮助验证机制。本站应给出完整原创解释，而不是让读者自己从外链拼答案。
 
-## 收录规则
+## 题目覆盖来源
 
-优先官方文档、规范、原始论文、作者工程文章与题目原站。技术结论说明版本、前提、反例和适用范围。面试优先级是学习建议，不编造公司来源或发生频率；示例数据和设计方案不称为上线成果。
+[JavaGuide](https://javaguide.cn/)用于后端知识体系与公开面试问题对照；[小林 coding](https://xiaolincoding.com/redis/architecture/mysql_redis_consistency.html)用于缓存一致性问题的时序覆盖；[Datawhale Hello Agents 面试问题](https://github.com/datawhalechina/hello-agents/blob/main/Extra-Chapter/Extra01-%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93.md)与[JavaGuide AI 指南](https://javaguide.cn/ai/interview-questions/ai-interview-guide.html)用于 LLM、RAG、Agent 和评测选题；[System Design Primer](https://github.com/donnemartin/system-design-primer)用于通用系统设计范围。
 
-修改日期表示文件发生变化，核验日期表示实际检查了相应资料。文章附来源不自动代表其中每条结论都经过实验；可运行、手动实验、教学片段与未验证项分别标注。
+这些资料不证明某题的实际出现频率。即使作者说明来自真实面试，也仅归属于作者的报告；不替它编造公司、年份或百分比。具体覆盖和当前缺口见 [审阅记录](./coverage-audit.md)。
 
-## 基础机制与数据库
+## 本轮实际阅读的技术依据
 
-| 原始资料 | 类型 | 建议阅读与对应专题 |
+| 主题 | 原始资料 | 支持的内容 |
 | --- | --- | --- |
-| [Java 21 Object](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html) | 官方 API | equals/hashCode 契约；Java 基础 |
-| [JLS 21 Chapter 17](https://docs.oracle.com/javase/specs/jls/se21/html/jls-17.html) | 语言规范 | 同步和 happens-before；JMM |
-| [ThreadPoolExecutor](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ThreadPoolExecutor.html) | 官方 API | 队列、扩容、拒绝；线程池实验 |
-| [Java 21 GC Guide](https://docs.oracle.com/en/java/javase/21/gctuning/) | 官方指南 | GC 日志与调优前提 |
-| [MySQL 一致性读](https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html) | 官方文档 | RC/RR、快照与当前读 |
-| [MySQL InnoDB 锁](https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html) | 官方文档 | 记录、间隙、next-key 锁 |
-| [MySQL redo](https://dev.mysql.com/doc/refman/8.4/en/innodb-redo-log.html) | 官方文档 | 崩溃恢复与持久性边界 |
-| [Spring 传播行为](https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/tx-propagation.html) | 官方文档 | REQUIRED、REQUIRES_NEW、NESTED |
-| [MyBatis Java API](https://mybatis.org/mybatis-3/java-api.html) | 官方文档 | SqlSession 与本地缓存 |
-| [Redis 分布式锁](https://redis.io/docs/latest/develop/clients/patterns/distributed-locks/) | 官方文档 | 租约、故障与锁边界 |
-| [Kafka Design](https://kafka.apache.org/41/design/design/) | 官方文档 | 消息可靠性与交付语义 |
-| [Cache-Aside](https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside) | 架构文档 | 缓存读写路径与陈旧窗口 |
-| [Transactional Outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html) | 架构文档 | 业务与事件意图同事务保存 |
-| [Saga](https://learn.microsoft.com/en-us/azure/architecture/patterns/saga) | 架构文档 | 补偿与最终一致 |
+| 并发规范 | [JLS 21 Chapter 17](https://docs.oracle.com/javase/specs/jls/se21/html/jls-17.html) | 同步关系、happens-before、单次发布的推导 |
+| 同步器 | [AQS 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/locks/AbstractQueuedSynchronizer.html) | state、独占/共享与等待协调 |
+| 线程池 | [ThreadPoolExecutor 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ThreadPoolExecutor.html)、[CallerRunsPolicy](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ThreadPoolExecutor.CallerRunsPolicy.html) | 参数和队列关系、拒绝、关闭后的丢弃语义 |
+| 异步任务 | [FutureTask](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/FutureTask.html)、[ExecutorService](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ExecutorService.html) | 返回值、失败、取消与停机 |
+| 缓存 | [Microsoft Cache-Aside](https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside) | 常见读写顺序与一致性限制 |
+| 可靠事件 | [AWS Outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)、[Debezium MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) | 事件意图、重复投递、快照和 binlog |
+| 检索与重排 | [Sentence Transformers](https://sbert.net/examples/sentence_transformer/applications/retrieve_rerank/README.html) | Bi-Encoder 与 Cross-Encoder 分工 |
+| 文档切块 | [Microsoft Chunking](https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents) | 长度、结构与重叠策略 |
+| 排名融合 | [Elasticsearch RRF](https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion) | 基于排名的融合公式 |
+| 向量查询 | [pgvector](https://github.com/pgvector/pgvector#filtering) | 精确/近似查询与过滤、迭代扫描的实现边界 |
+| 长上下文 | [Lost in the Middle](https://arxiv.org/abs/2307.03172) | 历史实验中的证据位置敏感性，不外推为所有当前模型结论 |
+| 工具执行 | [Claude Tool Use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview)、[Building effective agents](https://www.anthropic.com/engineering/building-effective-agents) | 宿主执行、调用结果配对与编排选择 |
+| MCP | [2026-07-28 Tools](https://modelcontextprotocol.io/specification/2026-07-28/server/tools)、[Versioning](https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning) | 定义、结果类型、新旧版本协商方式的区别 |
+| Schema 与取消 | [JSON Schema Object](https://json-schema.org/understanding-json-schema/reference/object)、[gRPC Cancellation](https://grpc.io/docs/guides/cancellation/) | 结构限制与服务端响应取消的职责 |
 
-## AI 与 Agent
+上表是本轮重写四篇文章的来源范围，不代表所有既有章节重新核验。各篇正文的 S1、S2 等标记对应其文末资料，教学例子与数值另行说明为原创推导。
 
-| 原始资料 | 类型 | 建议阅读与对应专题 |
-| --- | --- | --- |
-| [Attention Is All You Need](https://arxiv.org/abs/1706.03762) | 原始论文 | Attention 与多头机制 |
-| [RAG](https://arxiv.org/abs/2005.11401) | 原始论文 | 检索增强生成的基本思路 |
-| [LoRA](https://arxiv.org/abs/2106.09685) | 原始论文 | 参数高效微调 |
-| [QLoRA](https://arxiv.org/abs/2305.14314) | 原始论文 | 量化与参数高效训练 |
-| [HNSW](https://arxiv.org/abs/1603.09320) | 原始论文 | 近似向量检索 |
-| [Azure RAG](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview) | 官方文档 | 数据处理、检索与评测 |
-| [vLLM Prefix Caching](https://docs.vllm.ai/en/latest/features/automatic_prefix_caching/) | 官方文档 | 前缀计算复用 |
-| [Spring AI Tools](https://docs.spring.io/spring-ai/reference/api/tools.html) | 官方文档 | Java 工具执行与版本边界 |
-| [ReAct](https://arxiv.org/abs/2210.03629) | 原始论文 | 根据观察进行动作选择 |
-| [MCP 2026-07-28 Tools](https://modelcontextprotocol.io/specification/2026-07-28/server/tools) | 协议规范 | 工具定义、调用结果、错误与元数据 |
-| [Agent Skills](https://agentskills.io/specification) | 格式规范 | SKILL.md 与渐进加载 |
-| [LangGraph Persistence](https://docs.langchain.com/oss/python/langgraph/persistence) | 官方文档 | checkpoint、状态与存储 |
-| [LangGraph Functional API](https://docs.langchain.com/oss/python/langgraph/functional-api) | 官方文档 | 任务重放与幂等要求 |
-| [Context Engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) | 作者工程文章 | 上下文筛选与按需读取 |
-| [Agent Evals](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) | 作者工程文章 | 最终状态、轨迹和评测设计 |
-| [OWASP Prompt Injection](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html) | 安全指南 | 不可信内容与系统权限边界 |
+## 其他已有章节的来源
 
-## 算法与验证
+MySQL、Spring、Redis、Kafka、论文和算法原题链接仍保留在各自章节文末；旧页面的来源日期不因这次修改而统一更新。需要维护某篇文章时，必须重新读取相应版本资料，不能仅从本目录摘一个链接就打上“已核验”。
 
-算法题目的原站链接放在各题文末，背包课程资料使用 MIT OCW。Java 代码由文档提取测试；原站链接失效不应导致本站只剩题目标题。CI 中使用 Python unittest、Java source-file mode 与固定版本 Playwright 检查实际代码和页面，说明见 [实验总览](../projects/experiments.md)。
+## 冲突、实验与版权
 
-## 维护前的最后检查
+来源冲突时先核对条件、版本和保证强度。例如“最终能通过重试修复”不等于“任何时刻都一致”，“协议当前版本”不等于“所用 SDK 已支持”。保留不确定性和反例，不强行把来源拼成一致结论。
 
-引用是否真的支持这条结论？版本是否一致？是否把实现细节说成通用保证？是否把推测、合成数据或手动实验预期写成了验证事实？新增资料应能回答这些问题，再加入索引。
+合成数据只验证示例逻辑，不用于宣称真实模型质量、性能提升或生产经验。代码、构建、浏览器和业务验证分别记录，不能互相替代。
+
+引用保留作者、标题与链接，原创组织解释和案例，不复制整篇文章、付费题解或他人图解。每篇应可以独立学习，但不冒充外部资料的原创研究成果。
