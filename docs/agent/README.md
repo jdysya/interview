@@ -18,4 +18,6 @@ title: Agent 开发
 
 <KnowledgeDiagram name="runtime" />
 
+本轮深化：[执行与恢复实验](./runtime-lab.md)——checkpoint 不等于外部副作用去重；包含节点重放、人工中断、幂等有效期和故障恢复矩阵。
+
 [数据库 Agent 项目](../projects/database-agent.md) · [岗位模拟面试](../practice/agent-engineering.md) · [自测题库](../practice/README.md)

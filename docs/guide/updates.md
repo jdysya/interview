@@ -6,6 +6,20 @@ title: 内容更新与核验范围
 
 日期表示具体整理范围，不代表公司真题日期，也不代表全站全部内容已经重新核验。
 
+## 2026-09-14：深化 MVCC、Agent 恢复与评测判断
+
+根据 JavaGuide 与 Hello Agents 的公开问题组织选题，分别阅读 MySQL 8.4 手册/固定源码、LangGraph 当前文档、AWS 幂等 API 原文，以及评测官方资料和 Judge 原论文。没有按个人经历选题，也没有增加空泛页面。
+
+| 既有专题 | 本次新增的学习价值 |
+| --- | --- |
+| [MySQL MVCC](../backend/mysql-mvcc.md) | 隔离级别/读法/机制分层，版本链、Read View 等号边界，锁定读不刷新快照，自己的写入与历史版本混合反例 |
+| [Agent Runtime](../agent/runtime-lab.md) | checkpoint/上下文/store/账本区分，LangGraph 重放与中断边界，参数冲突、迟到请求和故障恢复矩阵 |
+| [评测实践](../ai/evaluation-lab.md) | macro/micro 手算、拒答混淆矩阵、Judge 偏差校准、配对比较、pass@k/pass^k、成本和发布门槛 |
+
+保留六个既有问题 ID、页面路径和已有可视化。新增正文 Python 教学模型的自动提取检查；加强双 SQLite 恢复实验的重新连接、重复丢失结果与临时查询异常检查。同步专题入口、题库索引、资料目录与缺口记录。
+
+验证范围须分清：教学模型和 SQLite fixture 不等于真实 MySQL 事务实验、LangGraph SDK 集成、网络分区测试或真实模型评测。具体代码、构建、浏览器与部署检查以本次 PR/Actions 结果为准；未宣称全站均已核验。
+
 ## 2026-09-06：新增 AI Agent 开源教学项目导航
 
 新增 [AI Agent 开源教学项目导航](../agent/learning-resources.md)。本轮不是追加一页 `awesome list`，而是实际读取候选项目 GitHub README 后，按“是否有明确学习顺序、是否提供可运行代码或 Notebook、当前完成度、适用阶段和限制”重新分类。

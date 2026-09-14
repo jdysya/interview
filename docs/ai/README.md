@@ -17,4 +17,6 @@ title: AI 应用开发
 
 <KnowledgeDiagram name="evaluation" />
 
+本轮深化：[评分器与发布门槛](./evaluation-lab.md)——macro/micro 分母、误拒率、配对退化、pass@k/pass^k 和 Judge 校准，解释平均分提高为何仍不足以上线。
+
 [岗位模拟面试](../practice/ai-application.md) · [实验运行说明](../projects/experiments.md) · [自测题库](../practice/README.md)

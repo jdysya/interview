@@ -18,4 +18,6 @@ title: Java 后端开发
 
 <KnowledgeDiagram name="threadpool" />
 
+本轮深化：[MVCC 版本可见性与双事务推导](./mysql-mvcc.md)——区分隔离级别、读法和实现，手算 Read View 边界，解释为什么锁定读后普通查询仍可看到旧值。
+
 [库存项目](../projects/inventory-reservation.md) · [审批一致性](../projects/approval-consistency.md) · [后端模拟面试](../practice/java-backend.md)

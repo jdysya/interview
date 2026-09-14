@@ -8,6 +8,8 @@ title: 题目与专题索引
 
 ## 知识专题
 
+2026-09-14 深化入口（保留原题 ID）：[Q-DB-01/02：MVCC 与 Read View](../backend/mysql-mvcc.md)、[Q-AGENT-01/02：Runtime 恢复](../agent/runtime-lab.md)、[Q-EVAL-01/02：评测与发布判断](../ai/evaluation-lab.md)。本轮补充可推演反例和已回答的追问，不新增自测题数量。
+
 | 模块 | 概览 | 深入与实践 |
 | --- | --- | --- |
 | AI 应用 | [LLM](../ai/llm-basics.md)、[RAG](../ai/rag.md)、[检索](../ai/retrieval.md)、[结构化输出](../ai/structured-output.md)、[评测](../ai/evaluation.md)、[服务](../ai/serving.md) | [模型与推理](../ai/transformer-inference.md)、[RAG 实验](../ai/rag-lab.md)、[评测实践](../ai/evaluation-lab.md)、[Java AI](../ai/java-service.md) |

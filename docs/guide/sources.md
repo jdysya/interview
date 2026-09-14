@@ -20,7 +20,19 @@ title: 资料来源与核验方法
 
 本轮核验只支持“这个仓库当前公开了哪些课程结构、代码、实验和项目状态”。GitHub Star 不作为质量证明；README 中的 production-ready、best practice、真实面试、高频、性能等宣传性描述也不自动升级为本站事实。MCP、Tool Calling、LangGraph、模型 API 等技术语义需要写入正式专题时，仍回到相应官方规范、源码、论文或可复现实验重新核验。
 
-## 本轮实际阅读的技术依据
+## 2026-09-14：MVCC、Runtime 与评测深化依据
+
+选题阅读 [JavaGuide MySQL 原始问题页](https://github.com/Snailclimb/JavaGuide/blob/main/docs/database/mysql/mysql-questions-01.md) 和 [Hello Agents 面试问题](https://github.com/datawhalechina/hello-agents/blob/main/Extra-Chapter/Extra01-%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93.md)，仅用于确认通用问题覆盖，不采信题目频率宣传。技术核验与限制如下：
+
+| 页面 | 实际核验的一手依据 | 支持的问题与边界 |
+| --- | --- | --- |
+| [MVCC](../backend/mysql-mvcc.md) | [MySQL 8.4 一致性读](https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html)、[多版本](https://dev.mysql.com/doc/refman/8.4/en/innodb-multi-versioning.html)、[锁定读](https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html)、[mysql-8.4.0 ReadView 源码](https://github.com/mysql/mysql-server/blob/mysql-8.4.0/storage/innobase/include/read0types.h) | 精确到快照时机、自己的写入和可见性边界；纠正“BEGIN 时固定视图”“MVCC 是锁升级”的泛化说法 |
+| [Runtime](../agent/runtime-lab.md) | [Persistence](https://docs.langchain.com/oss/python/langgraph/persistence)、[Checkpointers](https://docs.langchain.com/oss/python/langgraph/checkpointers)、[Interrupts](https://docs.langchain.com/oss/python/langgraph/interrupts)、[AWS 幂等 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/) | 节点/步骤重放、保存时机、参数与迟到请求；不能把“副作用移到 interrupt 后”解释为任意崩溃下只执行一次 |
+| [评测实践](../ai/evaluation-lab.md) | [IR 教材](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)、[MT-Bench Judge 论文](https://arxiv.org/abs/2306.05685)、[SciPy bootstrap](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html)、[Anthropic Agent evals](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)、[LangSmith Evaluation concepts](https://docs.langchain.com/langsmith/evaluation-concepts) | 排名评价、Judge 偏差、配对抽样、重复试验、数据版本；合成数字与代码只验证计算逻辑，不证明模型收益 |
+
+框架文档以 2026-09-14 阅读时内容为准；本站未安装并测试 LangGraph/LangSmith SDK。MySQL SQL 表格为按官方语义推导的待复现实验，源码边界由固定版本标签核验。
+
+## 2026-09-05：首轮重写实际阅读的技术依据
 
 | 主题 | 原始资料 | 支持的内容 |
 | --- | --- | --- |

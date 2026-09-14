@@ -35,6 +35,14 @@ def main() -> None:
         subprocess.run([sys.executable, str(rrf)], check=True, timeout=10)
         print("PASS: published RRF ranking, duplicate and empty-list examples")
 
+        for relative in ("docs/backend/mysql-mvcc.md", "docs/ai/evaluation-lab.md"):
+            examples = blocks(relative, "python")
+            require(len(examples) == 1, f"Expected one complete teaching model in {relative}")
+            example = directory / (Path(relative).stem + ".py")
+            example.write_text(examples[0] + "\n", encoding="utf-8")
+            subprocess.run([sys.executable, str(example)], check=True, timeout=10)
+            print(f"PASS: published teaching-model assertions in {relative} (not an integration test)")
+
         java_examples = [code for code in blocks("docs/backend/jmm-threadpool.md", "java")
                          if "public class RejectedFutureDemo" in code]
         require(len(java_examples) == 1, "Expected one complete Future rejection example")
