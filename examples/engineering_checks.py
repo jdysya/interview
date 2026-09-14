@@ -185,12 +185,44 @@ class EngineeringChecks(unittest.TestCase):
                     local.execute("request-1", {"amount": 3}, crash_after_remote=True)
                 self.assertEqual(remote.count(), 1)
                 local.close()
+                remote.close()
+                remote = RemoteStore(root / "remote.db")
                 local = DurableCall(root / "local.db", remote)
+                # Recover, but lose the result a second time before saving locally.
+                with self.assertRaises(SimulatedCrash):
+                    local.execute("request-1", {"amount": 3}, crash_after_remote=True)
                 self.assertEqual(local.execute("request-1", {"amount": 3}), "ticket-1")
                 self.assertEqual(local.execute("request-1", {"amount": 3}), "ticket-1")
                 self.assertEqual(remote.count(), 1)
                 with self.assertRaises(Conflict):
                     local.execute("request-1", {"amount": 4})
+                self.assertEqual(remote.count(), 1)
+            finally:
+                local.close(); remote.close()
+
+    def test_transient_lookup_failure_preserves_prepared_intent(self):
+        class UnavailableRemote(RemoteStore):
+            unavailable = True
+
+            def lookup(self, key, digest):
+                if self.unavailable:
+                    raise TimeoutError("Simulated lookup outage")
+                return super().lookup(key, digest)
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            remote = UnavailableRemote(root / "remote.db")
+            local = DurableCall(root / "local.db", remote)
+            try:
+                with self.assertRaises(TimeoutError):
+                    local.execute("export-1", {"format": "csv"})
+                self.assertEqual(remote.count(), 0)
+                self.assertEqual(local.db.execute(
+                    "SELECT status FROM calls WHERE business_key='export-1'"
+                ).fetchone()[0], "PREPARED")
+                remote.unavailable = False
+                original = local.execute("export-1", {"format": "csv"})
+                self.assertEqual(local.execute("export-1", {"format": "csv"}), original)
                 self.assertEqual(remote.count(), 1)
             finally:
                 local.close(); remote.close()

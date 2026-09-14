@@ -1,6 +1,6 @@
 ---
 title: 公开资料对照与内容缺口
-date: 2026-09-05
+date: 2026-09-14
 ---
 
 # 公开资料对照与内容缺口
@@ -9,7 +9,7 @@ date: 2026-09-05
 
 此前扩充过度围绕数据库 Agent、库存与审批案例，且把简短原则写成“深化专题”。有目录、有参考资料、有测试通过，不等于内容足够支撑通用面试准备。
 
-本轮先用公开资料检查题目覆盖，再用官方文档核对具体答案；仅重写四篇核心文章，不将整个站点标记为已经补全。
+2026-09-05 首轮先用公开资料检查题目覆盖，再用官方文档核对具体答案，重写四篇核心文章。2026-09-14 继续深化三篇既有文章，不将整个站点标记为已经补全。
 
 ## 公开资料如何参与选题
 
@@ -31,8 +31,11 @@ date: 2026-09-05
 | [缓存一致性](../backend/cache-outbox.md) | 四种时序、提交边界、TTL 起算、可靠事件、版本水位、具体追问答案 | Redis/MySQL 故障集成测试与实际陈旧分布 |
 | [RAG 检索](../ai/rag-lab.md) | 编码器对比、切块反例、RRF 计算、ANN 排障、指标与消融 | 真实模型或语料上的质量提升 |
 | [工具调用](../agent/tool-contracts.md) | 执行分层、不同 ID、输入输出契约、错误/取消、MCP 版本纠正 | 完整 SDK/宿主兼容性和生产鉴权实现 |
+| [MVCC（09-14）](../backend/mysql-mvcc.md) | 版本链、Read View 精确边界、锁定读后快照不刷新、自己写入的混合版本反例 | 真实 MySQL 多会话运行与 purge 观测 |
+| [Runtime（09-14）](../agent/runtime-lab.md) | checkpoint/store/账本、重放与中断、动作身份、未知结果与去重有效期 | LangGraph SDK 集成、真实服务/网络故障、跨机 worker |
+| [评测实践（09-14）](../ai/evaluation-lab.md) | 指标分母、误拒、Judge 校准、配对比较、重复试验和发布取舍 | 真实模型收益、人工校准、统计显著与 A/B 测试 |
 
-页面中的 `content_status: source-reviewed` 仅用于本轮逐项阅读了相关来源的这四篇。它不表示无误证明，也不代表未运行的实验已经通过；代码运行与构建情况以 PR 的实际检查记录为准。
+页面中的 `content_status: source-reviewed` 表示该页按所标日期阅读了相关来源，不表示无误证明，也不代表未运行的实验已经通过；代码运行与构建情况以 PR 的实际检查记录为准。
 
 ## 通用知识体系仍然有哪些缺口？
 
@@ -43,12 +46,12 @@ date: 2026-09-05
 | Java 语言与集合 | 泛型擦除、异常语义、HashMap 扩容、ConcurrentHashMap 操作边界 | [后端](../backend/README.md) |
 | 并发与 JVM | Condition、ThreadLocal、CompletableFuture、GC 日志与内存诊断 | [并发](../backend/concurrency.md)、[JVM](../backend/jvm.md) |
 | Spring 与 MyBatis | 生命周期、循环依赖条件、代理、事务传播、执行器与缓存 | [Spring](../backend/spring.md)、[MyBatis](../backend/spring-mybatis.md) |
-| MySQL | B+Tree 与执行计划、联合索引、Read View、锁范围、redo/binlog 协同 | [MySQL](../backend/mysql.md) |
+| MySQL | Read View 已深化；仍需 B+Tree 与执行计划、联合索引、锁范围、redo/binlog 协同 | [MySQL](../backend/mysql.md) |
 | Redis 与消息 | 底层结构、持久化/复制、热键、大 key、消息顺序与重复消费 | [Redis](../backend/redis.md)、[消息](../backend/messaging.md) |
 | OS、网络与排障 | IO 模型、虚拟内存、TCP、HTTP/TLS、连接与线程耗尽 | [网络](../backend/network.md)、[排障](../backend/os-rpc.md) |
 | LLM 应用基础 | Attention、位置编码、采样、KV cache、模型适配与结构化输出 | [AI](../ai/README.md) |
 | RAG 进阶 | 检索器评估、改写、重排、GraphRAG 的适用边界与更新策略 | [RAG](../ai/rag.md) |
-| Agent 与评测 | ReAct/规划、记忆、上下文、框架状态更新、评测任务与真实失败样本 | [Agent](../agent/README.md) |
+| Agent 与评测 | 重放和评测判断已深化；仍需 ReAct/规划、上下文策略、框架状态更新与真实失败样本 | [Agent](../agent/README.md) |
 | 通用系统设计 | 短链、聊天、限流、分布式 ID、通知、文件服务、模型网关 | [场景](../system-design/README.md) |
 
 ## 新文章的验收方式
