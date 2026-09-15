@@ -25,7 +25,7 @@ def require(condition: bool, message: str) -> None:
         raise AssertionError(message)
 
 
-def main() -> None:
+def main() -> None: 
     with tempfile.TemporaryDirectory(prefix="wiki-source-examples-") as temp:
         directory = Path(temp)
         python_examples = blocks("docs/ai/rag-lab.md", "python")
